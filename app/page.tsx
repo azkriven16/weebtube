@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <div className="p-4 md:pl-24 space-y-5">
             <Tags />
-            <ScrollArea className="h-[25rem] w-full">
+            <ScrollArea className="h-[70vh] w-full pb-20">
                 <div className="space-y-5">
                     <h1 className="text-lg font-semibold mb-6">Trending</h1>
                     <div className="flex flex-wrap gap-2 w-max pb-4">
