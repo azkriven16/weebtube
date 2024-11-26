@@ -11,26 +11,67 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { MenuIcon, Search } from "lucide-react";
+import {
+    Bell,
+    Home,
+    Layers,
+    LucideIcon,
+    MenuIcon,
+    Search,
+    UserCircle,
+} from "lucide-react";
+import Link from "next/link";
 import { Logo } from "../common/logo";
 import { ModeToggle } from "../common/mode-toggle";
 
 export const DesktopNav = () => {
     return (
-        <nav className="flex items-center justify-between gap-5 p-4">
-            <div className="flex items-center">
-                <Menu />
-                <Logo />
-            </div>
-            <SearchBar />
+        <div>
+            <nav className="flex items-center justify-between gap-5 p-4">
+                <div className="flex items-center">
+                    <Menu />
+                    <Logo />
+                </div>
+                <SearchBar />
 
-            <div className="flex gap-5">
-                <ModeToggle />
-                <div className="bg-primary rounded-full h-8 w-8"></div>
-            </div>
-        </nav>
+                <div className="flex gap-5">
+                    <ModeToggle />
+                    <div className="bg-primary rounded-full h-8 w-8"></div>
+                </div>
+            </nav>
+
+            <aside className="fixed left-0 w-20 space-y-5">
+                <NavItem Icon={Home} href="/" text="Home" />
+                <NavItem Icon={Layers} href="/" text="Subscriptions" />
+                <NavItem Icon={Bell} href="/" text="Notifications" />
+                <NavItem Icon={UserCircle} href="/" text="You" />
+            </aside>
+        </div>
     );
 };
+
+function NavItem({
+    href,
+    text,
+    Icon,
+}: {
+    href: string;
+    text: string;
+    Icon: LucideIcon;
+}) {
+    return (
+        <Button
+            asChild
+            variant="ghost"
+            className="flex-col w-full h-full rounded-none [&_svg]:size-5"
+        >
+            <Link href={href}>
+                <Icon />
+                <span className="text-xs">{text}</span>
+            </Link>
+        </Button>
+    );
+}
 
 function SearchBar() {
     return (

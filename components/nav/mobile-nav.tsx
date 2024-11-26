@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 export const MobileNav = () => {
     return (
         <div>
-            <nav className="flex items-center justify-between gap-5 p-4">
+            <nav className="flex items-center justify-between gap-5 p-4 sticky">
                 <div className="flex items-center scale-75 -translate-x-10">
                     <Logo />
                 </div>
@@ -18,7 +18,7 @@ export const MobileNav = () => {
                 </div>
             </nav>
 
-            <div className="fixed bottom-0 border-t border-secondary w-full flex">
+            <div className="fixed bottom-0 border-t border-secondary w-full flex z-10 bg-background">
                 <NavItem Icon={Home} href="/" text="Home" />
                 <NavItem Icon={Layers} href="/" text="Subscriptions" />
                 <NavItem Icon={Bell} href="/" text="Notifications" />
