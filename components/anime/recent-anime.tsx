@@ -1,15 +1,23 @@
 "use client";
 
 import { getRecentAnime } from "@/lib/queries";
-import { getAnimeTitle } from "@/lib/utils";
+import { cn, getAnimeTitle } from "@/lib/utils";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { AlertCircle, RefreshCw } from "lucide-react";
 import React from "react";
-import { RecentCard } from "../common/card";
+import { RecentCardMain, RecentCardSide } from "../common/card";
 import { Button } from "../ui/button";
-import { AnimeCardLoader } from "./anime-card-loader";
+import { AnimeCardLoaderMain, AnimeCardLoaderSide } from "./anime-card-loader";
 
-export const RecentAnimeContainer = () => {
+interface RecentAnimeContainerProps {
+    containerStyles?: string;
+    cardType?: "side" | "main";
+}
+
+export const RecentAnimeContainer = ({
+    containerStyles,
+    cardType,
+}: RecentAnimeContainerProps) => {
     const fetchRecentAnime = async ({ pageParam = 1 }) => {
         return getRecentAnime(20, pageParam);
     };
@@ -36,9 +44,21 @@ export const RecentAnimeContainer = () => {
         return (
             <div>
                 <h1 className="text-lg font-semibold mb-6">Trending</h1>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div
+                    className={cn(
+                        cardType === "main"
+                            ? "grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+                            : "flex flex-col gap-5"
+                    )}
+                >
                     {[...Array(6)].map((_, index) => (
-                        <AnimeCardLoader key={index} />
+                        <>
+                            {cardType === "main" ? (
+                                <AnimeCardLoaderMain key={index} />
+                            ) : (
+                                <AnimeCardLoaderSide key={index} />
+                            )}
+                        </>
                     ))}
                 </div>
             </div>
@@ -65,19 +85,32 @@ export const RecentAnimeContainer = () => {
 
     return (
         <div>
-            <h1 className="text-lg font-semibold mb-6">Trending</h1>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <h1 className="text-lg font-semibold mb-6">Recently Released</h1>
+            <div className={cn(containerStyles)}>
                 {data?.pages.map((group, pageIndex) => (
                     <React.Fragment key={pageIndex}>
                         {group.map((anime, animeIndex) => (
-                            <RecentCard
-                                href={`/watch?id=${anime.id}&episode=${anime.episodeId}`}
-                                key={`${pageIndex}-${animeIndex}`}
-                                image={anime.image}
-                                episodeTitle={anime.episodeTitle}
-                                animeTitle={getAnimeTitle(anime.title)}
-                                avatar={anime.image}
-                            />
+                            <>
+                                {cardType === "main" ? (
+                                    <RecentCardMain
+                                        href={`/watch?id=${anime.id}&episode=${anime.episodeId}`}
+                                        key={`${pageIndex}-${animeIndex}`}
+                                        image={anime.image}
+                                        episodeTitle={anime.episodeTitle}
+                                        animeTitle={getAnimeTitle(anime.title)}
+                                        avatar={anime.image}
+                                    />
+                                ) : (
+                                    <RecentCardSide
+                                        href={`/watch?id=${anime.id}&episode=${anime.episodeId}`}
+                                        key={`${pageIndex}-${animeIndex}`}
+                                        image={anime.image}
+                                        episodeTitle={anime.episodeTitle}
+                                        animeTitle={getAnimeTitle(anime.title)}
+                                        avatar={anime.image}
+                                    />
+                                )}
+                            </>
                         ))}
                     </React.Fragment>
                 ))}
