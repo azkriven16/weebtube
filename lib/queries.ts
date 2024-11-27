@@ -38,6 +38,6 @@ export const getAnimeInfo = async (
 export const getAnimeEpisodeStreaming = async (
     episodeId: string
 ): Promise<AnimeEpisodeStreaming> => {
-    const response = await client.get(`/watch/${episodeId}`);
+    const response = await client.get(`/watch${episodeId}`);
     return response?.data;
 };
