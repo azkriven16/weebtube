@@ -13,7 +13,10 @@ export default function WatchPage() {
             <div className="md:w-2/3 pb-20">
                 <ScrollArea className="md:h-[150vh] w-full pb-20 p-4 md:p-0">
                     <div className="space-y-5">
-                        <RecentAnimeContainer containerStyles="grid gap-6 md:grid-cols-2 lg:grid-cols-1" />
+                        <RecentAnimeContainer
+                            cardType="side"
+                            containerStyles="grid gap-6 md:grid-cols-2 lg:grid-cols-1"
+                        />
                     </div>
                     <ScrollBar orientation="vertical" />
                 </ScrollArea>

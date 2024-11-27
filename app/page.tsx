@@ -8,7 +8,10 @@ export default async function Home() {
             <Tags />
             <ScrollArea className=" md:h-[70vh] pb-20">
                 <div className="space-y-5">
-                    <RecentAnimeContainer containerStyles="grid gap-6 md:grid-cols-2 lg:grid-cols-3" />
+                    <RecentAnimeContainer
+                        cardType="main"
+                        containerStyles="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+                    />
                 </div>
                 <ScrollBar orientation="vertical" />
             </ScrollArea>
