@@ -232,7 +232,7 @@ function WatchPageContentInner({
 
 function LoadingFallback() {
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-96 w-full bg-secondary">
             <Loader2 className="w-10 h-10 animate-spin" />
             <span className="sr-only">Loading...</span>
         </div>

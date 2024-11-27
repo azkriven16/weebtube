@@ -20,7 +20,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
                 {children}
             </ThemeProvider>
             <Toaster richColors position="top-center" />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
     );
 };
