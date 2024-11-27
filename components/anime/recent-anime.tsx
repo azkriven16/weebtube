@@ -71,6 +71,7 @@ export const RecentAnimeContainer = () => {
                     <React.Fragment key={pageIndex}>
                         {group.map((anime, animeIndex) => (
                             <RecentCard
+                                href={`/watch?id=${anime.id}&episode=${anime.episodeId}`}
                                 key={`${pageIndex}-${animeIndex}`}
                                 image={anime.image}
                                 episodeTitle={anime.episodeTitle}

@@ -17,6 +17,7 @@ interface YouTubeCardProps {
     animeTitle: string;
     episodeTitle: string;
     avatar?: string;
+    href: string;
 }
 
 export function RecentCard({
@@ -24,9 +25,10 @@ export function RecentCard({
     animeTitle,
     episodeTitle,
     avatar,
+    href,
 }: YouTubeCardProps) {
     return (
-        <Link href="/">
+        <Link href={href}>
             <Card className="w-full max-w-sm overflow-hidden border-none rounded-none md:rounded-xl">
                 <div className="relative aspect-video">
                     <Image

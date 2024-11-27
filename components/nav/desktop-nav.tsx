@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,8 +25,10 @@ import {
 import Link from "next/link";
 import { Logo } from "../common/logo";
 import { ModeToggle } from "../common/mode-toggle";
+import { usePathname } from "next/navigation";
 
 export const DesktopNav = () => {
+    const pathname = usePathname();
     return (
         <div>
             <nav className="flex items-center justify-between gap-5 p-4">
@@ -40,12 +44,14 @@ export const DesktopNav = () => {
                 </div>
             </nav>
 
-            <aside className="fixed left-0 w-20 space-y-5">
-                <NavItem Icon={Home} href="/" text="Home" />
-                <NavItem Icon={Layers} href="/" text="Subscriptions" />
-                <NavItem Icon={Bell} href="/" text="Notifications" />
-                <NavItem Icon={UserCircle} href="/" text="You" />
-            </aside>
+            {pathname === "/" && (
+                <aside className="fixed left-0 w-20 space-y-5">
+                    <NavItem Icon={Home} href="/" text="Home" />
+                    <NavItem Icon={Layers} href="/" text="Subscriptions" />
+                    <NavItem Icon={Bell} href="/" text="Notifications" />
+                    <NavItem Icon={UserCircle} href="/" text="You" />
+                </aside>
+            )}
         </div>
     );
 };

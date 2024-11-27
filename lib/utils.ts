@@ -8,6 +8,14 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getAnimeTitle = (title: Title) => {
     return typeof title !== "string"
-        ? title.english || title.native || title.romaji || title.userPreferred
+        ? title?.english ||
+              title?.native ||
+              title?.romaji ||
+              title?.userPreferred
         : title;
 };
+
+export const popularityFormater = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+});

@@ -41,7 +41,7 @@ function NavItem({
         <Button
             asChild
             variant="ghost"
-            className="flex-col w-full h-full rounded-none [&_svg]:size-6"
+            className="flex-col w-full h-full rounded-none [&_svg]:size-4"
         >
             <Link href={href}>
                 <Icon />
